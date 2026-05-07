@@ -16,7 +16,7 @@ func main() {
 	var wg sync.WaitGroup
 	wg.Add(1)
 	// Start crawling in a goroutine
-	go crawl("https://archive.transformativeworks.org/tags/Harry%20Potter%20-%20J*d*%20K*d*%20Rowling/works", foundLinks, visited, &wg)
+	go crawl("https://archive.transformativeworks.org/tags/Harry%20Potter%20-%20J*d*%20K*d*%20Rowling/works?page=1", foundLinks, visited, &wg)
 	go func() {
 		wg.Wait()
 		close((foundLinks))
@@ -26,6 +26,15 @@ func main() {
 		fmt.Println("Found link:", link)
 	}
 }
+
+func scrapetext(url string) string {
+	return "nothing"
+}
+
+func scrapecomment(url string) string {
+	return "nothing"
+}
+
 
 func crawl(url string, ch chan string, visited map[string]bool, wg *sync.WaitGroup) {
 	if visited[url] {
